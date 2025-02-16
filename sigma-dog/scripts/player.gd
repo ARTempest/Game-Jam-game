@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 
+
 var attack : bool
 
 const SPEED : float = 300.0
@@ -16,6 +17,13 @@ func _physics_process(delta: float) -> void:
 		update_animation_parameters("walking")
 	
 	var direction_x := Input.get_axis("left", "right")
+	
+	
+	if direction_x > 0:
+		$Sprite2D.scale.x = -1
+	elif direction_x < 0:
+		$Sprite2D.scale.x = 1
+	
 	var direction_y := Input.get_axis("up", "down")
 
 	if direction_x:
